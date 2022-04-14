@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/comicbook
+    driverClassName: org.mariadb.jdbc.Driver
+    name: comicbook
+    password: root
+    username: root
+  h2:
+    console:
+      enabled: true
+  jpa:
+   # database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+server:
+  port: 2608
+  servlet:
+    context-path: /comicbook/api/v1/
+project:
+  root: ${user.home}/comicbook/
+  data: ${project.root}data/
+  photo: ${project.data}photos/
+  logo: ${project.data}logos/
