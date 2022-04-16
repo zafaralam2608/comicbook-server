@@ -16,21 +16,40 @@ import com.project.comicbook.service.PhotoService;
 @RequestMapping("/photo/{id}")
 public class PhotoController {
 
+    /** The service dependency for photo. */
     @Autowired
     private PhotoService photoService;
 
+    /**
+     * Gets a photo content by ID.
+     *
+     * @param id the ID of the requested photo
+     * @return the content
+     */
     @GetMapping(produces = MediaType.IMAGE_JPEG_VALUE)
-    public byte[] getContent(@PathVariable Long id) {
-	return photoService.getContent(id);
+    public byte[] getContent(@PathVariable final Long id) {
+        return photoService.getContent(id);
     }
 
+    /**
+     * Save a photo content by ID.
+     *
+     * @param id the ID of the requested photo
+     * @param content the photo in the form of byte stream
+     */
     @PostMapping(consumes = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public void saveContent(@PathVariable Long id, @RequestBody byte[] content) {
-	photoService.saveContent(id, content);
+    public void saveContent(@PathVariable final Long id,
+            @RequestBody final byte[] content) {
+        photoService.saveContent(id, content);
     }
 
+    /**
+     * Delete a photo content by ID.
+     *
+     * @param id the ID of the requested photo
+     */
     @DeleteMapping
-    public void deleteContent(@PathVariable Long id) {
-	photoService.deleteContent(id);
+    public void deleteContent(@PathVariable final Long id) {
+        photoService.deleteContent(id);
     }
 }

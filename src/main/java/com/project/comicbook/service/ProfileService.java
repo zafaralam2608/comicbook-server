@@ -14,32 +14,58 @@ import com.project.comicbook.resource.ProfileResource;
 @Service
 public class ProfileService {
 
+    /** The dependency for ModelMapper. */
     @Autowired
     private ModelMapper modelMapper;
 
+    /** The repository dependency for profile. */
     @Autowired
     private ProfileRepository profileRepository;
 
-    // @Autowired
-    // private LinksRepository linksRepository;
-
-    public ProfileResource get(long id) {
-	return convertModelToResource(profileRepository.findById(id).get());
+    /**
+     * Gets a profile by ID.
+     *
+     * @param id the ID of the requested profile
+     * @return the profile
+     */
+    public ProfileResource get(final long id) {
+        return convertModelToResource(profileRepository.findById(id).get());
     }
 
+    /**
+     * Gets all the profiles.
+     *
+     * @return the profiles
+     */
     public List<ProfileResource> getAll() {
-	return convertModelToResourceMultiple(profileRepository.findAll());
+        return convertModelToResourceMultiple(profileRepository.findAll());
     }
 
-    public List<ProfileResource> saveProfiles(List<String> names) {
-	List<Profile> models = names.stream().map(name -> new Profile(name)).collect(Collectors.toList());
-	return convertModelToResourceMultiple(profileRepository.saveAll(models));
+    /**
+     * Creates profiles from names.
+     *
+     * @param names the list of names
+     * @return the profiles
+     */
+    public List<ProfileResource> saveProfiles(final List<String> names) {
+        List<Profile> models = names.stream().map(name -> new Profile(name))
+                .collect(Collectors.toList());
+        return convertModelToResourceMultiple(
+                profileRepository.saveAll(models));
     }
 
-    public ProfileResource modifyProfile(Long id, ProfileResource resource) {
-	Profile model = modelMapper.map(resource, Profile.class);
-	model.setId(id);
-	return convertModelToResource(profileRepository.save(model));
+    /**
+     * Update profile details by ID.
+     *
+     * @param id the ID of the requested profile
+     * @param resource the resource body for a profile
+     * @return the profile
+     */
+    public ProfileResource modifyProfile(final Long id,
+            final ProfileResource resource) {
+        Profile model = modelMapper.map(resource, Profile.class);
+        model.setId(id);
+        return convertModelToResource(profileRepository.save(model));
     }
 
     /*
@@ -48,24 +74,50 @@ public class ProfileService {
      * Links.class); Links profileLinks = profileRepository.getLinksById(id); if
      * (profileLinks == null) { Profile model =
      * profileRepository.findById(id).get(); model.setLinks(linksModel);
-     * profileRepository.save(model); } else { Long linksId = profileLinks.getId();
-     * linksModel.setId(linksId); linksRepository.save(linksModel); } return
+     * profileRepository.save(model); } else { Long linksId =
+     * profileLinks.getId(); linksModel.setId(linksId);
+     * linksRepository.save(linksModel); } return
      * convertModelToResource(profileRepository.findById(id).get()); }
      */
 
-    public void deleteProfiles(List<Long> ids) {
-	profileRepository.deleteAllById(ids);
+    /**
+     * Delete profiles by IDs.
+     *
+     * @param ids the IDs of the requested profile
+     */
+    public void deleteProfiles(final List<Long> ids) {
+        profileRepository.deleteAllById(ids);
     }
 
-    private ProfileResource convertModelToResource(Profile model) {
-	return modelMapper.map(model, ProfileResource.class);
+    /**
+     * Convert a model to a resource.
+     *
+     * @param model the profile model
+     * @return the profile resource
+     */
+    private ProfileResource convertModelToResource(final Profile model) {
+        return modelMapper.map(model, ProfileResource.class);
     }
 
-    private List<ProfileResource> convertModelToResourceMultiple(List<Profile> models) {
-	return models.stream().map(this::convertModelToResource).collect(Collectors.toList());
+    /**
+     * Convert a list of models to a list of resources.
+     *
+     * @param models the models
+     * @return the list
+     */
+    private List<ProfileResource> convertModelToResourceMultiple(
+            final List<Profile> models) {
+        return models.stream().map(this::convertModelToResource)
+                .collect(Collectors.toList());
     }
 
-    private Profile convertResourceToModel(ProfileResource resource) {
-	return modelMapper.map(resource, Profile.class);
+    /**
+     * Convert a resource to a model.
+     *
+     * @param resource the profile resource
+     * @return the profile model
+     */
+    private Profile convertResourceToModel(final ProfileResource resource) {
+        return modelMapper.map(resource, Profile.class);
     }
 }

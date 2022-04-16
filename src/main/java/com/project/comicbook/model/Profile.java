@@ -26,28 +26,42 @@ import lombok.Setter;
 @Setter
 public class Profile {
 
+    /** The id. */
     @Id
-    @SequenceGenerator(name = "PROFILE_ID_GEN", initialValue = 10000, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_ID_GEN")
+    @SequenceGenerator(
+            name = "PROFILE_ID_GEN",
+           // initialValue = 10000,
+            allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "PROFILE_ID_GEN")
     private Long id;
 
+    /** The name. */
     @NonNull
     private String name;
 
+    /** The alias. */
     private String alias;
 
+    /** The base. */
     private String base;
 
+    /** The debut in. */
     private String debutIn;
 
+    /** The debut on. */
     private String debutOn;
 
+    /** The links. */
     @OneToOne(cascade = CascadeType.ALL)
     private Links links;
 
+    /** The created. */
     @CreationTimestamp
     private Date created;
 
+    /** The updated. */
     @UpdateTimestamp
     private Date updated;
 

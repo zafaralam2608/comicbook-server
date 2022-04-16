@@ -8,12 +8,22 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
-    public static void main(String[] args) {
-	SpringApplication.run(Application.class);
+    /**
+     * The main method of the application.
+     *
+     * @param args the runtime arguments
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(Application.class);
     }
 
+    /**
+     * Creates an instance of ModelMapper.
+     *
+     * @return the ModelMapper
+     */
     @Bean
     ModelMapper getModelMapper() {
-	return new ModelMapper();
+        return new ModelMapper();
     }
 }

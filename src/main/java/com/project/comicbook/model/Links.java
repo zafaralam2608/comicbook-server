@@ -16,18 +16,29 @@ import lombok.Setter;
 @Setter
 public class Links {
 
+    /** The id. */
     @Id
-    @SequenceGenerator(name = "LINKS_ID_GEN", initialValue = 1000000, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LINKS_ID_GEN")
+    @SequenceGenerator(
+            name = "LINKS_ID_GEN",
+            //initialValue = 1000000,
+            allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "LINKS_ID_GEN")
     private Long id;
 
+    /** The official. */
     private String official = "";
 
+    /** The wikipedia. */
     private String wikipedia = "";
 
+    /** The instagram. */
     private String instagram = "";
 
+    /** The twitter. */
     private String twitter = "";
 
+    /** The facebook. */
     private String facebook = "";
 }
