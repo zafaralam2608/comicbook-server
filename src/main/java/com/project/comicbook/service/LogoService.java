@@ -1,8 +1,8 @@
 package com.project.comicbook.service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import static com.project.comicbook.util.FileUtil.deleteFile;
+import static com.project.comicbook.util.FileUtil.readFile;
+import static com.project.comicbook.util.FileUtil.writeFile;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,7 @@ public class LogoService {
      * @return the content
      */
     public byte[] getContent(final long id) {
-        try {
-            return Files.readAllBytes(Path.of(logoDir + id));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
+        return readFile(logoDir + id);
     }
 
     /**
@@ -37,15 +31,7 @@ public class LogoService {
      * @param content the logo in the form of byte stream
      */
     public void saveContent(final long id, final byte[] content) {
-        try {
-            if (!Files.exists(Path.of(logoDir))) {
-                Files.createDirectory(Path.of(logoDir));
-            }
-            Files.write(Path.of(logoDir + id), content);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        writeFile(logoDir + id, content);
     }
 
     /**
@@ -54,11 +40,6 @@ public class LogoService {
      * @param id the ID of the requested logo
      */
     public void deleteContent(final Long id) {
-        try {
-            Files.deleteIfExists(Path.of(logoDir + id));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        deleteFile(logoDir + id);
     }
 }

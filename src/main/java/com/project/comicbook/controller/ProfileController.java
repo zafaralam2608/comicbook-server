@@ -79,11 +79,4 @@ public class ProfileController {
         profileService.deleteProfiles(ids);
     }
 
-    // @PostMapping(value = "/{id}/links", consumes =
-    // MediaType.APPLICATION_JSON_VALUE)
-    /*
-     * public ProfileResource createLinks(@PathVariable Long id, @RequestBody
-     * LinksResource resource) { return
-     * profileService.saveModifyProfileLinks(id, resource); }
-     */
 }

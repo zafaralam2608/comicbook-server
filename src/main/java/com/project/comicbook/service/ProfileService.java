@@ -48,7 +48,7 @@ public class ProfileService {
      * @return the profiles
      */
     public List<ProfileResource> saveProfiles(final List<String> names) {
-        List<Profile> models = names.stream().map(name -> new Profile(name))
+        List<Profile> models = names.stream().map(Profile::new)
                 .collect(Collectors.toList());
         return convertModelToResourceMultiple(
                 profileRepository.saveAll(models));
@@ -63,22 +63,10 @@ public class ProfileService {
      */
     public ProfileResource modifyProfile(final Long id,
             final ProfileResource resource) {
-        Profile model = modelMapper.map(resource, Profile.class);
+        Profile model = convertResourceToModel(resource);
         model.setId(id);
         return convertModelToResource(profileRepository.save(model));
     }
-
-    /*
-     * public ProfileResource saveModifyProfileLinks(long id, LinksResource
-     * linksResource) { Links linksModel = modelMapper.map(linksResource,
-     * Links.class); Links profileLinks = profileRepository.getLinksById(id); if
-     * (profileLinks == null) { Profile model =
-     * profileRepository.findById(id).get(); model.setLinks(linksModel);
-     * profileRepository.save(model); } else { Long linksId =
-     * profileLinks.getId(); linksModel.setId(linksId);
-     * linksRepository.save(linksModel); } return
-     * convertModelToResource(profileRepository.findById(id).get()); }
-     */
 
     /**
      * Delete profiles by IDs.
