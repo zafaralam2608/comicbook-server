@@ -1,17 +1,11 @@
 package com.project.comicbook.resource;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class LinksResource {
-
-    /** The id. */
-    private Long id;
+public class LinksResource extends BaseResource {
 
     /** The official. */
     private String official;

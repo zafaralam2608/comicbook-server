@@ -1,17 +1,11 @@
 package com.project.comicbook.resource;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ProfileResource {
-
-    /** The id. */
-    private Long id;
+public class ProfileResource extends BaseResource {
 
     /** The name. */
     private String name;
@@ -27,8 +21,5 @@ public class ProfileResource {
 
     /** The debut on. */
     private String debutOn;
-
-    /** The links. */
-    private LinksResource links;
 
 }
