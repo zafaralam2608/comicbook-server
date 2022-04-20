@@ -1,6 +1,7 @@
 package com.project.comicbook.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Links extends BaseModel {
+
+    /** The id. */
+    @Id
+    private Long id;
 
     /** The official. */
     private String official = "";

@@ -1,7 +1,6 @@
 package com.project.comicbook.controller;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +40,7 @@ public class BaseController<M extends BaseModel, R extends BaseResource> {
      * @return the resources
      */
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public R fetchById(@PathVariable final UUID id) {
+    public R fetchById(@PathVariable final Long id) {
         return service.get(id);
     }
 
@@ -53,7 +52,7 @@ public class BaseController<M extends BaseModel, R extends BaseResource> {
      * @return the resources
      */
     @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public R updateById(@PathVariable final UUID id,
+    public R updateById(@PathVariable final Long id,
             @RequestBody final R resource) {
         return service.update(id, resource);
     }
@@ -64,7 +63,7 @@ public class BaseController<M extends BaseModel, R extends BaseResource> {
      * @param ids the IDs of the requested resources
      */
     @DeleteMapping
-    public void deleteByIds(@RequestBody final List<UUID> ids) {
+    public void deleteByIds(@RequestBody final List<Long> ids) {
         service.delete(ids);
     }
 }

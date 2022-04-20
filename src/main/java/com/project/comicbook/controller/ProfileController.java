@@ -12,7 +12,8 @@ import com.project.comicbook.model.Profile;
 import com.project.comicbook.resource.ProfileResource;
 import com.project.comicbook.service.ProfileService;
 
-@RestController @RequestMapping("/profile")
+@RestController
+@RequestMapping("/profile")
 public class ProfileController
         extends BaseController<Profile, ProfileResource> {
 

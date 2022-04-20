@@ -1,9 +1,7 @@
 package com.project.comicbook.model;
 
 import java.util.Date;
-import java.util.UUID;
 
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,10 +14,6 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public class BaseModel {
-
-    /** The id. */
-    @Id
-    private UUID id;
 
     /** The created. */
     @CreationTimestamp

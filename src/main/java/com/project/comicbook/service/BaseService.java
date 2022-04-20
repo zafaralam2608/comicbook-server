@@ -1,7 +1,6 @@
 package com.project.comicbook.service;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -23,7 +22,7 @@ public abstract class BaseService<M extends BaseModel, R extends BaseResource> {
     private ModelMapper modelMapper;
 
     /** The repository dependency. */
-    private final JpaRepository<M, UUID> repository;
+    private final JpaRepository<M, Long> repository;
 
     /**
      * Gets a resource by ID.
@@ -31,7 +30,7 @@ public abstract class BaseService<M extends BaseModel, R extends BaseResource> {
      * @param id the ID of the requested resource
      * @return the resource
      */
-    public R get(final UUID id) {
+    public R get(final Long id) {
         return convertModelToResource(repository.findById(id).get());
     }
 
@@ -51,19 +50,14 @@ public abstract class BaseService<M extends BaseModel, R extends BaseResource> {
      * @param resource the resource body for a model
      * @return the resource
      */
-    public R update(final UUID id,
-            final R resource) {
-        M model = convertResourceToModel(resource);
-        model.setId(id);
-        return convertModelToResource(repository.save(model));
-    }
+    public abstract R update(Long id, R resource);
 
     /**
      * Delete models by IDs.
      *
      * @param ids the IDs of the requested model
      */
-    public void delete(final List<UUID> ids) {
+    public void delete(final List<Long> ids) {
         repository.deleteAllById(ids);
     }
 
