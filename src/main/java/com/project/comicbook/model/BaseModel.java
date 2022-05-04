@@ -2,6 +2,7 @@ package com.project.comicbook.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,6 +18,7 @@ public class BaseModel {
 
     /** The created. */
     @CreationTimestamp
+    @Column(nullable = false, updatable = false)
     private Date created;
 
     /** The updated. */
