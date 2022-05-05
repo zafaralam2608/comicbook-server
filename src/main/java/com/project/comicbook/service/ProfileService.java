@@ -20,7 +20,7 @@ public class ProfileService extends BaseService<Profile, ProfileResource> {
     }
 
     @Override
-    public final List<ProfileResource> saveProfiles(final List<String> names) {
+    public final List<ProfileResource> createByNames(final List<String> names) {
         List<Profile> models = names.stream().map(Profile:: new)
                 .collect(Collectors.toList());
         return convertModelsToResources(getRepository().saveAll(models));

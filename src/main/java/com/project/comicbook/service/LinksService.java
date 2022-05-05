@@ -19,7 +19,7 @@ public class LinksService extends BaseService<Links, LinksResource> {
     }
 
     @Override
-    public final List<LinksResource> saveProfiles(final List<String> names) {
+    public final List<LinksResource> createByNames(final List<String> names) {
         return null;
     }
 

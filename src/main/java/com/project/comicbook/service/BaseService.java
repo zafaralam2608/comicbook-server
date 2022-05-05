@@ -67,7 +67,7 @@ public abstract class BaseService<M extends BaseModel, R extends BaseResource> {
      * @param names the list of names
      * @return the resources
      */
-    public abstract List<R> saveProfiles(List<String> names);
+    public abstract List<R> createByNames(List<String> names);
 
     /**
      * Convert a model to a resource.

@@ -33,6 +33,6 @@ public class ProfileController
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<ProfileResource> createProfiles(
             @RequestBody final List<String> names) {
-        return getService().saveProfiles(names);
+        return getService().createByNames(names);
     }
 }
