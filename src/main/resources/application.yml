@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:${project.data}database/comicbook
+    url: jdbc:h2:file:${project.data.root}database\comicbook
     driverClassName: org.h2.Driver
     name: comicbook
     password: comicbook
@@ -17,7 +17,10 @@ server:
   servlet:
     context-path: /comicbook/api/v1/
 project:
-  root: ${user.home}/comicbook/
-  data: ${project.root}data/
-  photo: ${project.data}photos/
-  logo: ${project.data}logos/
+  root: ${user.home}\comicbook\
+  data:
+    root: ${project.root}data\
+    photo: ${project.data.root}photos\
+    logo: ${project.data.root}logos\
+    bio: ${project.data.root}bio\
+    abilities: ${project.data.root}abilities\

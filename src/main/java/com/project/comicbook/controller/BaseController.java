@@ -18,7 +18,8 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class BaseController<M extends BaseModel, R extends BaseResource> {
+public abstract class BaseController<M extends BaseModel,
+    R extends BaseResource> {
 
     /** The service dependency. */
     private final BaseService<M, R> service;
@@ -47,7 +48,7 @@ public class BaseController<M extends BaseModel, R extends BaseResource> {
     /**
      * Update resources details by ID.
      *
-     * @param id the ID of the requested resource
+     * @param id       the ID of the requested resource
      * @param resource the request body for a resource
      * @return the resources
      */

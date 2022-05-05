@@ -9,7 +9,25 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public final class FileUtil {
 
-    private FileUtil() { }
+    private FileUtil() {
+    }
+
+    /**
+     * Creates a directory if it doesn't exist.
+     *
+     * @param pathString the path of the requested file
+     */
+    public static void checkCreateDirectory(final String pathString) {
+        Path path = Path.of(pathString);
+        if (!Files.exists(path)) {
+            try {
+                Files.createDirectory(path);
+            } catch (IOException e) {
+                log.error("Error checking/creating directory at path {}",
+                        path, e);
+            }
+        }
+    }
 
     /**
      * Gets a file content by path.
@@ -29,7 +47,7 @@ public final class FileUtil {
     /**
      * Save a file content by path.
      *
-     * @param path the path of the requested file
+     * @param path    the path of the requested file
      * @param content the file content
      */
     public static void writeFile(final String path, final byte[] content) {

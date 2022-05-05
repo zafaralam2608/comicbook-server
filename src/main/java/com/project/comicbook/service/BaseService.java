@@ -46,7 +46,7 @@ public abstract class BaseService<M extends BaseModel, R extends BaseResource> {
     /**
      * Update model details by ID.
      *
-     * @param id the ID of the requested model
+     * @param id       the ID of the requested model
      * @param resource the resource body for a model
      * @return the resource
      */

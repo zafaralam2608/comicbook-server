@@ -7,7 +7,7 @@ import com.project.comicbook.service.PhotoService;
 
 @RestController
 @RequestMapping("/photo")
-public class PhotoController extends BaseFileController {
+public class PhotoController extends BaseFileImageController {
 
     /**
      * @param service dependency for photo
